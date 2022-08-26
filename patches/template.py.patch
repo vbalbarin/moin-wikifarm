@@ -22,5 +22,4 @@
 +    #page_front_page = u"FrontPage"
 
 +    data_dir = '{{ MOIN_ROOT }}/sites/{{ WIKI }}/data/'
-+    data_underlay_dir = '{{ MOIN_ROOT }}/sites/{{ WIKI }}/underlay'
-EOF
++    data_underlay_dir = '{{ MOIN_ROOT }}/sites/{{ WIKI }}/underlay/'
