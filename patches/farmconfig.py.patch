@@ -1,0 +1,77 @@
+--- farmconfig.py	2022-08-26 14:55:53.437097337 +0000
++++ farmconfig.py.patched	2022-08-26 15:19:56.113313861 +0000
+@@ -40,14 +40,7 @@
+ #  * in the right part, "^" means "beginning" and "$" means "end"
+ 
+ wikis = [
+-
+-    # wikiname, url regular expression
+-    # ---------------------------------------------------------------
+-    ("mywiki", r".*"),   # this is ok for a single wiki
+-
+-    # for multiple wikis, do something like this:
+-    #("wiki1", r"^http://wiki1\.example\.org/.*$"),
+-    #("wiki2", r"^https?://wiki2\.example\.org/.*$"),
++    #("{{ WIKI_00 }}", r"^https?://{{ SERVERNAME_00 }}/{{ WIKI_00 }}.*$"),
+ ]
+ 
+ 
+@@ -78,7 +71,7 @@
+     # If you run your wiki script at the root of your site (/), just do NOT
+     # use this setting and it will automatically work.
+     # If you run your wiki script at /mywiki, you need to use this:
+-    #url_prefix_static = '/mywiki' + url_prefix_static
++    url_prefix_static = '/moin_static{{ MOIN_VER_URL }}'
+     # If you need different url_prefix_static setups for your wikis,
+     # you'll have to do it in each wiki's config.
+ 
+@@ -86,7 +79,7 @@
+ 
+     # This is checked by some rather critical and potentially harmful actions,
+     # like despam or PackageInstaller action:
+-    #superuser = [u"YourName", ]
++    superuser = [u"{{ SU }}", ]
+ 
+     # Some actions are by default only enabled for superusers and disabled
+     # for everybody else.
+@@ -101,7 +94,7 @@
+     # IMPORTANT: grant yourself admin rights! replace YourName with
+     # your user name. See HelpOnAccessControlLists for more help.
+     # All acl_rights_xxx options must use unicode [Unicode]
+-    #acl_rights_before = u"YourName:read,write,delete,revert,admin"
++    acl_rights_before = u"{{ SU }}:read,write,delete,revert,admin"
+ 
+     # This is the default ACL that applies to pages without an ACL.
+     # Adapt it to your needs, consider using an EditorGroup.
+@@ -118,10 +111,10 @@
+     # sending forgotten passwords.
+ 
+     # SMTP server, e.g. "mail.provider.com" (empty or None to disable mail)
+-    #mail_smarthost = ""
++    mail_smarthost = "localhost"
+ 
+-    # The return address, e.g u"Jürgen Wiki <noreply@mywiki.org>" [Unicode]
+-    #mail_from = u""
++    # The return address, e.g u"J¸rgen Wiki <noreply@mywiki.org>" [Unicode]
++    mail_from = u"{{ MAIL_FROM }}"
+ 
+     # "user pwd" if you need to use SMTP AUTH
+     #mail_login = ""
+@@ -137,14 +130,15 @@
+     # according to the user selected language. [Unicode]
+     navi_bar = [
+         # If you want to show your page_front_page here:
+-        #u'%(page_front_page)s',
++        u'%(page_front_page)s',
+         u'RecentChanges',
+         u'FindPage',
++        u'SiteNavigation',
+         u'HelpContents',
+     ]
+ 
+     # The default theme anonymous or new users get
+-    theme_default = 'modern'
++    theme_default = 'rightsidebar'
+ 
+ 
+     # Language options --------------------------------------------------

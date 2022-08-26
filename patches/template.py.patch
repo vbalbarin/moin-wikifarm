@@ -1,0 +1,26 @@
+--- mywiki.py	2022-08-25 19:52:13.121738350 +0000
++++ template.py	2022-08-26 14:32:40.003198711 +0000
+@@ -19,16 +19,16 @@
+ class Config(FarmConfig):
+
+     # basic options (you normally need to change these)
+-    sitename = u'MyWiki' # [Unicode]
+-    interwikiname = u'MyWiki' # [Unicode]
++    sitename = u'{{ WIKI }}' # [Unicode]
++    interwikiname = u'{{ WIKI }}' # [Unicode]
+
+     # name of entry page / front page [Unicode], choose one of those:
+
+     # a) if most wiki content is in a single language
+-    #page_front_page = u"MyStartingPage"
++    page_front_page = u"Home"
+
+     # b) if wiki content is maintained in many languages
+-    page_front_page = u"FrontPage"
+-
+-    data_dir = '/org/mywiki/data/'
++    #page_front_page = u"FrontPage"
+
++    data_dir = '{{ MOIN_ROOT }}/sites/{{ WIKI }}/data/'
++    data_underlay_dir = '{{ MOIN_ROOT }}/sites/{{ WIKI }}/underlay'
+EOF
